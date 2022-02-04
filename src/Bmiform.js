@@ -35,7 +35,7 @@ const BmiForm = (props) => {
     <>
     
       <div className="row" >
-        <div>
+        <div className="col m6 s12" >
           <label htmlFor="weight">Weight (in kg)</label>
           <input
             id="weight"
@@ -48,7 +48,7 @@ const BmiForm = (props) => {
           />
         </div>
 
-        <div>
+        <div className="col m6 s12">
           <label htmlFor="  ">Height (in cm)</label>
           <input
             id="height"

@@ -8,19 +8,15 @@ import { getData, storeData } from "./localStorage";
 function App(props) {
   const initialState = () => getData("data") || [];
   const [state, setState] = useState(initialState);
-  const [data, setData] = useState({});
 
   useEffect(() => {
     storeData("data", state);
-    const date = state.map((obj) => obj.date);
-    const bmi = state.map((obj) => obj.bmi);
-    let newData = { date, bmi };
-    setData(newData);
   }, [state]);
 
   const handleChange = (val) => {
     let heightInM = val.height / 100;
     val.bmi = (val.weight / (heightInM * heightInM)).toFixed(2);
+    val.id = Math.random()
     let newVal = [...state, val];
     setState(newVal);
   };

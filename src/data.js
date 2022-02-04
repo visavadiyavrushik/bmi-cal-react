@@ -17,7 +17,6 @@ const Data = (props) => {
             <span data-test="height">Height: {props.height} cm</span>
             <span data-test="date">Date: {props.date}</span>
           </div>
-
           <button className="delete-btn" onClick={handleDelete}>
             X
           </button>
