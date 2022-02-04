@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from 'prop-types';
+import React, { useState } from "react"
 import "./App.css";
 
 const initialValues = {
@@ -8,12 +7,12 @@ const initialValues = {
   date: "",
 };
 
-const BmiForm = ({ change }) => {
+const BmiForm = (props) => {
   const [state, setState] = useState(initialValues);
 
   const handleChange = (e) => {
     let { value, name } = e.target;
-    
+
     if (value > 500) {
       value = 500;
     }
@@ -28,15 +27,15 @@ const BmiForm = ({ change }) => {
   };
 
   const handleSubmit = () => {
-    change(state);
+    props.change(state);
     setState(initialValues);
   };
 
   return (
     <>
-      <div className="row">
-      {/* className="col m6 s12"git  */}
-        <div >
+    
+      <div className="row" >
+        <div>
           <label htmlFor="weight">Weight (in kg)</label>
           <input
             id="weight"
@@ -48,9 +47,9 @@ const BmiForm = ({ change }) => {
             onChange={handleChange}
           />
         </div>
-        {/* className="col m6 s12" */}
+
         <div>
-          <label htmlFor="height">Height (in cm)</label>
+          <label htmlFor="  ">Height (in cm)</label>
           <input
             id="height"
             name="height"
@@ -69,16 +68,15 @@ const BmiForm = ({ change }) => {
           className="calculate-btn"
           type="button"
           onClick={handleSubmit}
-          disabled={state.weight === '' || state.height === ''}
-        > Calculate BMI
+          disabled={state.weight === "" || state.height === ""}
+        >
+          {" "}
+          Calculate BMI
         </button>
       </div>
     </>
   );
 };
 
-BmiForm.propTypes = {
-	change: PropTypes.func.isRequired
-};
 
 export default BmiForm;

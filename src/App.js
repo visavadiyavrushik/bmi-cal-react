@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
+import "materialize-css/dist/css/materialize.min.css";
 import "./App.css";
 import BmiForm from "./Bmiform";
 import Data from "./data";
-import { getData, storeData } from './localStorage';
+import { getData, storeData } from "./localStorage";
 
-function App() {
+function App(props) {
   const initialState = () => getData("data") || [];
   const [state, setState] = useState(initialState);
   const [data, setData] = useState({});
 
   useEffect(() => {
-    storeData('data', state);
-    const date = state.map(obj => obj.date);
-    const bmi = state.map(obj => obj.bmi);
+    storeData("data", state);
+    const date = state.map((obj) => obj.date);
+    const bmi = state.map((obj) => obj.bmi);
     let newData = { date, bmi };
     setData(newData);
   }, [state]);
 
-  const handleChange = val => {
+  const handleChange = (val) => {
     let heightInM = val.height / 100;
     val.bmi = (val.weight / (heightInM * heightInM)).toFixed(2);
     let newVal = [...state, val];
-    let len = newVal.length;
-    if (len > 7) newVal = newVal.slice(1, len);
     setState(newVal);
   };
 
-  const handleDelete = id => {
-    storeData('lastState', state);
-    let newState = state.filter(i => {
+  const handleDelete = (id) => {
+    storeData("lastState", state);
+    let newState = state.filter((i) => {
       return i.id !== id;
     });
     setState(newState);
@@ -36,26 +35,26 @@ function App() {
 
   return (
     <div className="App">
-      <div >
-        <h1> BMI Tracker </h1>
+      <div className="row center">
+        <h1 className="white-text"> BMI Tracker </h1>
       </div>
       <div>
-        <BmiForm change={handleChange}/>
+        <BmiForm change={handleChange} />
         <div>
           <div className="row center">
-            <h4 className="white-text">7 Day Data</h4>
+            <h4 className="white-text">Data</h4>
           </div>
           <div className="data-container row">
             {state.length > 0 ? (
               <>
-                {state.map((info) => (
+                {state.map((data) => (
                   <Data
-                    id={info.id}
-                    weight={info.weight}
-                    height={info.height}
-                    date={info.date}
-                    bmi={info.bmi}
-                    disabled={state.weight === '' || state.height === ''}
+                    id={data.id}
+                    weight={data.weight}
+                    height={data.height}
+                    date={data.date}
+                    bmi={data.bmi}
+                    disabled={state.weight === "" || state.height === ""}
                     deleteCard={handleDelete}
                   />
                 ))}

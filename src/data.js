@@ -1,9 +1,8 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
 
-const Data = ({ weight, height, id, date, bmi, deleteCard }) => {
+const Data = (props) => {
   const handleDelete = () => {
-    deleteCard(id);
+    props.deleteCard(props.id);
   };
 
   return (
@@ -11,12 +10,12 @@ const Data = ({ weight, height, id, date, bmi, deleteCard }) => {
       <div className="card">
         <div className="card-content">
           <span className="card-title" data-test="bmi">
-            BMI: {bmi}
+            BMI: {props.bmi}
           </span>
           <div className="card-data">
-            <span data-test="weight">Weight: {weight} kg</span>
-            <span data-test="height">Height: {height} cm</span>
-            <span data-test="date">Date: {date}</span>
+            <span data-test="weight">Weight: {props.weight} kg</span>
+            <span data-test="height">Height: {props.height} cm</span>
+            <span data-test="date">Date: {props.date}</span>
           </div>
 
           <button className="delete-btn" onClick={handleDelete}>
@@ -26,15 +25,6 @@ const Data = ({ weight, height, id, date, bmi, deleteCard }) => {
       </div>
     </div>
   );
-};
-
-Data.propTypes = {
-  weight: PropTypes.string,
-  height: PropTypes.string,
-  id: PropTypes.string,
-  date: PropTypes.string,
-  bmi: PropTypes.string,
-  deleteCard: PropTypes.func
 };
 
 export default Data;
