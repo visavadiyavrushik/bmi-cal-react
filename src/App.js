@@ -14,9 +14,9 @@ function App(props) {
   }, [state]);
 
   const handleChange = (val) => {
-    let heightInM = val.height / 100;
-    val.bmi = (val.weight / (heightInM * heightInM)).toFixed(2);
-    val.id = Math.random()
+    let height = val.height / 100;
+    val.bmi = (val.weight / (height * height)).toFixed(2);
+    val.id = Math.floor(Math.random() * 1001);
     let newVal = [...state, val];
     setState(newVal);
   };

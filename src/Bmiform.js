@@ -11,17 +11,16 @@ const BmiForm = (props) => {
   const [state, setState] = useState(initialValues);
 
   const handleChange = (e) => {
-    let { value, name } = e.target;
-
-    if (value > 500) {
-      value = 500;
+    
+    if (e.target.value > 500) {
+      e.target.value = 500;
     }
 
     const date = new Date().toLocaleString().split(",")[0];
 
     setState({
       ...state,
-      [name]: value,
+      [e.target.name]: e.target.value,
       date,
     });
   };
