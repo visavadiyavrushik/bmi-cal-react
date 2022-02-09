@@ -41,6 +41,7 @@ function App(props) {
             <h4 className="white-text">Data</h4>
           </div>
           <div className="data-container row">
+            
             {state.length > 0 ? (
               <>
                 {state.map((data) => (
